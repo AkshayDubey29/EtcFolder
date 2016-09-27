@@ -29,3 +29,4 @@ sid,search,"splunk_server","_time","is_realtime","event_count","exec_time","resu
 "1474017421.13","| copybuckets json=""{\""providers\"": {}, \""vixes\"": {}}""",testingserver,"1474017421.221054",0,0,1474017421,0,0,canceled,"0.150000",,,,,,,,,,,
 "1474931821.3","| copybuckets json=""{\""providers\"": {}, \""vixes\"": {}}""",testingserver,"1474931821.321730",0,0,1474931821,0,0,canceled,"0.197000",,,,,,,,,,,
 "1474935421.10","| copybuckets json=""{\""providers\"": {}, \""vixes\"": {}}""",testingserver,"1474935421.307739",0,0,1474935421,0,0,canceled,"0.191000",,,,,,,,,,,
+"1474939023.15","| copybuckets json=""{\""vixes\"": {}, \""providers\"": {}}""",testingserver,"1474939023.236879",0,0,1474939023,0,0,canceled,"0.433000",,,,,,,,,,,

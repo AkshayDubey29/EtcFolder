@@ -2535,6 +2535,10 @@ chown root:root ./users/admin/search/history/testingserver.csv
 chown root:root ./users/admin/search/local
 chown root:root ./users/admin/search/local/ui-tour.conf
 chown root:root ./users/admin/search/local/ui-prefs.conf
+chown root:root ./users/admin/search/local/data
+chown root:root ./users/admin/search/local/data/ui
+chown root:root ./users/admin/search/local/data/ui/views
+chown root:root ./users/admin/search/local/data/ui/views/internal_log_viewer1.xml
 chown root:root ./users/admin/search/metadata
 chown root:root ./users/admin/search/metadata/local.meta
 chown root:root ./instance.cfg
