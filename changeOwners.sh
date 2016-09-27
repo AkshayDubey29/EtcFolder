@@ -2946,6 +2946,7 @@ chown root:root ./users/admin/search/local/data
 chown root:root ./users/admin/search/local/data/ui
 chown root:root ./users/admin/search/local/data/ui/views
 chown root:root ./users/admin/search/local/data/ui/views/internal_log_viewer1.xml
+chown root:root ./users/admin/search/local/data/ui/views/internal_log_viewer2.xml
 chown root:root ./users/admin/search/metadata
 chown root:root ./users/admin/search/metadata/local.meta
 chown root:root ./instance.cfg

@@ -8,7 +8,7 @@ modtime = 1473393386.628468000
 
 [ui-prefs/search]
 version = 6.4.3
-modtime = 1474940415.619042000
+modtime = 1474941273.187791000
 
 [ui-tour/dashboards-tour%3Aenterprise]
 version = 6.4.3
@@ -17,3 +17,7 @@ modtime = 1473723668.285818000
 [views/internal_log_viewer1]
 version = 6.4.3
 modtime = 1474940431.808418000
+
+[views/internal_log_viewer2]
+version = 6.4.3
+modtime = 1474941334.307396000
