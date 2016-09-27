@@ -1,0 +1,47 @@
+<form>
+    <label>Form Elements Within Panels</label>
+    <description>Example of placing form elements within a panel.</description>
+    <row>
+        <panel>
+            <input type="dropdown" token="sourcetype1" searchWhenChanged="true">
+                <label>Source types for _Internal All</label>
+                <choice value="*">All</choice>
+                <choice value="splunkd">splunkd</choice>
+                <choice value="splunk_web_access">splunk_web_access</choice>
+                <default>splunkd</default>
+            </input>
+            <chart>
+                <title>_Internal All</title>
+                <search>
+                    <query>index=_internal sourcetype="$sourcetype1$" | timechart count</query>
+                    <earliest>-4h@h</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.chart">line</option>
+                <option name="charting.legend.placement">none</option>
+            </chart>
+        </panel>
+        <panel>
+            <input type="radio" token="sourcetype2" searchWhenChanged="true">
+                <label>Source types for _Internal Top 3</label>
+                <choice value="*">All</choice>
+                <choice value="splunkd">splunkd</choice>
+                <choice value="splunk_web_access">splunk_web_access</choice>
+                <default>*</default>
+            </input>
+            <event>
+                <title>_Internal Top 3</title>
+                <search>
+                    <query>index=_internal sourcetype="$sourcetype2$" | head 3</query>
+                    <earliest>-4h@h</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="maxLines">5</option>
+                <option name="raw.drilldown">full</option>
+                <option name="rowNumbers">0</option>
+                <option name="type">list</option>
+                <option name="count">5</option>
+            </event>
+        </panel>
+    </row>
+</form>

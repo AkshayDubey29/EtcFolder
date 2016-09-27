@@ -1,0 +1,246 @@
+<form>
+    <label>Panel Refresh Controls</label>
+    <description/>
+    <row>
+        <panel>
+            <single>
+                <title>Default Single Value</title>
+                <search>
+                    <query>index=_internal | stats count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="unit">Incidents</option>
+                <option name="unitPosition">after</option>
+            </single>
+        </panel>
+        <panel>
+            <single>
+                <title>Disable refresh time</title>
+                <search>
+                    <query>index=_internal | stats count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="unit">Incidents</option>
+                <option name="unitPosition">after</option>
+                <option name="refresh.time.visible">false</option>
+            </single>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.time.visible">false</option>]]>
+                </code>
+            </html>
+        </panel>
+        <panel>
+            <single>
+                <title>Enable manual refresh link</title>
+                <search>
+                    <query>index=_internal | stats count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="unit">Incidents</option>
+                <option name="unitPosition">after</option>
+                <option name="refresh.link.visible">true</option>
+            </single>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.link.visible">true</option>]]>
+                </code>
+            </html>
+        </panel>
+        <panel>
+            <single>
+                <title>Enable auto refresh of 30s</title>
+                <search>
+                    <query>index=_internal | stats count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="drilldown">none</option>
+                <option name="unit">Incidents</option>
+                <option name="unitPosition">after</option>
+                <option name="refresh.auto.interval">30</option>
+            </single>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.auto.interval">30</option>]]>
+                </code>
+            </html>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <chart>
+                <title>Default Chart</title>
+                <search>
+                    <query>index=_internal | top limit=3 sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">bar</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="height">200</option>
+                <option name="charting.seriesColors">[0x293E6A, 0x77BA9B, 0x3B5998, 0x639BF1, 0xB6A754, 0xC9E1C1,
+                    0xFF9900, 0xFF5A09, 0x0F9FB4, 0x1D2F3E]
+                </option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>Disable refresh time</title>
+                <search>
+                    <query>index=_internal | top limit=3 sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">bar</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="height">200</option>
+                <option name="refresh.time.visible">false</option>
+                <option name="charting.seriesColors">[0x77BA9B, 0x3B5998, 0x639BF1, 0xB6A754, 0xC9E1C1, 0xFF9900,
+                    0xFF5A09, 0x0F9FB4, 0x1D2F3E]
+                </option>
+            </chart>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.time.visible">false</option>]]>
+                </code>
+            </html>
+        </panel>
+        <panel>
+            <chart>
+                <title>Disable manual refresh link</title>
+                <search>
+                    <query>index=_internal | top limit=3 sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">bar</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="height">200</option>
+                <option name="refresh.link.visible">false</option>
+                <option name="charting.seriesColors">[0x3B5998, 0x639BF1, 0xB6A754, 0xC9E1C1, 0xFF9900, 0xFF5A09,
+                    0x0F9FB4, 0x1D2F3E]
+                </option>
+            </chart>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.link.visible">false</option>]]>
+                </code>
+            </html>
+        </panel>
+        <panel>
+            <chart>
+                <title>Enable auto refresh of 30s</title>
+                <search>
+                    <query>index=_internal | top limit=3 sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">bar</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="height">200</option>
+                <option name="refresh.auto.interval">30</option>
+                <option name="charting.seriesColors">[0x639BF1, 0xB6A754, 0xC9E1C1, 0xFF9900, 0xFF5A09, 0x0F9FB4,
+                    0x1D2F3E]
+                </option>
+            </chart>
+            <html>Simple XML Setting:
+                <br/>
+                <code>
+                    <![CDATA[<option name="refresh.auto.interval">30</option>]]>
+                </code>
+            </html>
+        </panel>
+    </row>
+</form>

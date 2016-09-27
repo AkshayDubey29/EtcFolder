@@ -1,0 +1,26 @@
+<dashboard script="inpage_drilldown.js">
+    <label>In-Page Drilldown</label>
+
+    <row>
+        <table id="master">
+            <title>Master</title>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </table>
+    </row>
+
+    <row>
+        <chart id="detail">
+            <title>Detail: $submitted:sourcetype$</title>
+            <search>
+                <query>index=_internal sourcetype=$sourcetype$ | timechart count</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </chart>
+    </row>
+
+</dashboard>

@@ -1,0 +1,107 @@
+<dashboard>
+  <label>Single Value Element</label>
+  <row>
+    <panel>
+      <single>
+        <title>No decorations</title>
+        <search>
+          <query>index=_internal | timechart count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="showSparkline">0</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>With Trend Indicator</title>
+        <search>
+          <query>index=_internal | timechart count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-1h</option>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">0</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="underLabel">Compared to an hour before</option>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>With Sparkline</title>
+        <search>
+          <query>index=_internal | timechart count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="showTrendIndicator">0</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>With Sparkline and Trend Indicator</title>
+        <search>
+          <query>index=_internal | timechart count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-1h</option>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="underLabel">Compared to an hour before</option>
+        <option name="drilldown">none</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>With Sparkline, Trend Indicator and Drilldown</title>
+        <search>
+          <query>index=_internal | timechart count</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="trendColorInterpretation">standard</option>
+        <option name="trendDisplayMode">absolute</option>
+        <option name="trendInterval">-1h</option>
+        <option name="colorBy">value</option>
+        <option name="colorMode">none</option>
+        <option name="numberPrecision">0</option>
+        <option name="showTrendIndicator">1</option>
+        <option name="showSparkline">1</option>
+        <option name="useColors">0</option>
+        <option name="useThousandSeparators">1</option>
+        <option name="underLabel">Compared to an hour before</option>
+        <option name="drilldown">all</option>
+      </single>
+    </panel>
+  </row>
+</dashboard>

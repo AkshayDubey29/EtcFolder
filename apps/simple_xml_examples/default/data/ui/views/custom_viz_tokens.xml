@@ -1,0 +1,31 @@
+<form>
+    <label>Tag Cloud with Tokens</label>
+
+    <fieldset autoRun="true" submitButton="false">
+        <input type="dropdown" token="metric" searchWhenChanged="true">
+            <label>Metric</label>
+            <choice>cpu_seconds</choice>
+            <choice>executes</choice>
+            <choice>cumulative_hits</choice>
+            <default>cpu_seconds</default>
+        </input>
+        <input type="time" />
+    </fieldset>
+
+    <row>
+        <panel>
+          	<viz type="simple_xml_examples.tagcloud">
+                <search>
+                  <query>index=_internal source=*metrics.log group=pipeline | stats max(cpu_seconds) as cpu_seconds sum(executes) as executes sum(cumulative_hits) as cumulative_hits by processor</query>
+                  <earlist>$earliest$</earlist>
+                  <latest>$latest$</latest>
+              	</search>
+                <option name="drilldown">row</option>
+                <option name="simple_xml_examples.tagcloud.maxFontSize">95</option>
+                <option name="simple_xml_examples.tagcloud.minFontSize">15</option>
+                <option name="simple_xml_examples.tagcloud.valueField">$metric$</option>
+                <option name="simple_xml_examples.tagcloud.labelField">processor</option>
+            </viz>
+        </panel>
+    </row>
+</form>

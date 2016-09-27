@@ -1,0 +1,1 @@
+Use choropleth maps to visualize a metric varies across a (custom) geographic area.

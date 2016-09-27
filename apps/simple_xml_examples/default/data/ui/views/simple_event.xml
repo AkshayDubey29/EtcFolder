@@ -1,0 +1,26 @@
+<dashboard>
+    <label>Event</label>
+    <row>
+        <event>
+            <title>Internal Sourcetype Metrics</title>
+            <search>
+                <query>index=_internal sourcetype=splunkd group=per_sourcetype_thruput</query>
+                <earliest>-7d@d</earliest>
+                <latest>now</latest>
+            </search>
+        </event>
+        <event>
+            <title>Internal Sourcetype Metrics</title>
+            <search>
+                <query>
+                    index=_internal sourcetype=splunkd group=per_sourcetype_thruput
+                    | fields + series, ev, eps, kb, kbps
+                </query>
+                <earliest>-7d@d</earliest>
+                <latest>now</latest>
+            </search>
+            <fields>series, ev, eps, kb, kbps</fields>
+            <option name="type">table</option>
+        </event>
+    </row>
+</dashboard>

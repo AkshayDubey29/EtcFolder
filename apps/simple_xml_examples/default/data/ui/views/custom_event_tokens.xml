@@ -1,0 +1,33 @@
+<form script="event_token_browser.js">
+    <label>Dynamic tokens from drilldown and change</label>
+    <description>See live what tokens are available when you click on a chart, legend, or change an input.</description>
+    <fieldset>
+        <input type="dropdown" token="input_token">
+            <choice value="1">one</choice>
+            <choice value="2">two</choice>
+            <choice value="3">three</choice>
+            <fieldForLabel>sourcetype</fieldForLabel>
+            <fieldForValue>sourcetype</fieldForValue>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <change>
+                <set token="foo">bar</set>
+            </change>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <chart>
+                <search>
+                    <query>index=_internal | timechart count by $input_token$</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+        </panel>
+    </row>
+</form>

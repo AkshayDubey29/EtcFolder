@@ -1,0 +1,39 @@
+<dashboard>
+    <label>Custom Visualization with Base Search</label>
+
+    <search id="tagcloud_search1">
+        <query>index=_internal source=*metrics.log group=pipeline|stats max(cpu_seconds) as cpu_seconds by processor</query>
+        <earliest>-24h</earliest>
+        <latest>now</latest>
+    </search>
+
+    <row>
+        <panel>
+            <title>Tag Cloud based on a base search</title>
+            <viz type="simple_xml_examples.tagcloud">
+                <search base="tagcloud_search1"></search>
+                <option name="drilldown">row</option>
+                <option name="simple_xml_examples.tagcloud.maxFontSize">48</option>
+                <option name="simple_xml_examples.tagcloud.minFontSize">12</option>
+                <option name="simple_xml_examples.tagcloud.valueField">cpu_seconds</option>
+                <option name="simple_xml_examples.tagcloud.labelField">processor</option>
+            </viz>
+        </panel>
+        <panel>
+            <title>Tag Cloud with an inline search</title>
+            <viz type="simple_xml_examples.tagcloud">
+                <search>
+                    <query>index=_internal source=*metrics.log group=pipeline | stats max(cpu_seconds) as cpu_seconds by processor</query>
+                    <earliest>-24h</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="drilldown">row</option>
+                <option name="simple_xml_examples.tagcloud.maxFontSize">48</option>
+                <option name="simple_xml_examples.tagcloud.minFontSize">12</option>
+                <option name="simple_xml_examples.tagcloud.valueField">cpu_seconds</option>
+                <option name="simple_xml_examples.tagcloud.labelField">processor</option>
+            </viz>
+        </panel>
+    </row>
+
+</dashboard>

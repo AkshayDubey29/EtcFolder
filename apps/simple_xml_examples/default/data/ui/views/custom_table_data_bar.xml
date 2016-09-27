@@ -1,0 +1,22 @@
+<dashboard script="table_data_bar.js" stylesheet="table_data_bar.css">
+
+    <label>Table Data Bar</label>
+    <description>Custom table cell renderer that replaces a field value with a data bar.</description>
+
+    <row>
+        <table id="table1">
+            <title>Top Sourcetypes (Last 24 hours)</title>
+            <search>
+                <query>index=_internal | top limit=100 sourcetype source</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">10</option>
+        </table>
+    </row>
+
+</dashboard>

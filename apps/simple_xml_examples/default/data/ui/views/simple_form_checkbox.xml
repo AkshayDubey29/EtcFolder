@@ -1,0 +1,36 @@
+<form>
+    <label>Check Box Input</label>
+    <description/>
+    <row>
+        <panel>
+            <!-- New in Splunk 6.1 use the checkbox input -->
+            <input type="checkbox" token="sourcetype_token" searchWhenChanged="true">
+                <choice value="*">ANY</choice>
+                <default>*</default>
+                <!-- The final value will be surrounded by prefix and suffix -->
+                <prefix>(</prefix>
+                <suffix>)</suffix>
+                <!-- Each value will be surrounded by the valuePrefix and valueSuffix -->
+                <valuePrefix>sourcetype="</valuePrefix>
+                <valueSuffix>"</valueSuffix>
+                <!-- All the values and their valuePrefix and valueSuffix will be concatenated together with the delimiter between them -->
+                <delimiter>OR</delimiter>
+                <fieldForLabel>sourcetype</fieldForLabel>
+                <fieldForValue>sourcetype</fieldForValue>
+                <search>
+                    <query>index=_internal | stats count by sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+            </input>
+            <chart>
+                <title>Multi Value Search</title>
+                <search>
+                    <query>index=_internal $sourcetype_token$ | stats count by sourcetype</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+            </chart>
+        </panel>
+    </row>
+</form>

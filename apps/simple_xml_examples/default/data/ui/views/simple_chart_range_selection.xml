@@ -1,0 +1,137 @@
+<form>
+    <label>Pan and Zoom Chart Controls</label>
+    <row>
+        <panel>
+            <chart>
+                <title>Event Trend (select time window to zoom)</title>
+                <search>
+                    <query>index=_internal | timechart count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+                <option name="charting.axisTitleX.visibility">collapsed</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="charting.seriesColors">[0x639BF1, 0xFF5A09]</option>
+                <option name="height">200</option>
+            </chart>
+            <chart>
+                <search>
+                    <query>index=_internal | timechart count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+                <option name="charting.axisTitleX.visibility">collapsed</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">line</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="charting.seriesColors">[0x639BF1, 0xFF5A09]</option>
+                <option name="height">200</option>
+            </chart>
+            <chart>
+                <search>
+                    <query>index=_internal | timechart count</query>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">-45</option>
+                <option name="charting.axisTitleX.visibility">collapsed</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.rangeValues">[]</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="charting.seriesColors">[0x639BF1, 0xFF5A09]</option>
+                <option name="height">200</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>Use Pan and Zoom to Select Time Ranges Used By Other Visualizations</title>
+                <search>
+                    <query>index=_internal | timechart count</query>
+                    <earliest>-4h@h</earliest>
+                    <latest>now</latest>
+                </search>
+                <option name="charting.chart">line</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="charting.seriesColors">[0x1D2F3E]</option>
+                <option name="charting.axisTitleX.visibility">collapsed</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="height">200</option>
+                <selection>
+                    <set token="selection.earliest">$start$</set>
+                    <set token="selection.latest">$end$</set>
+                    <set token="start.count">$start.count$</set>
+                    <set token="end.count">$end.count$</set>
+                </selection>
+            </chart>
+            <html>
+                <p>Token Values:</p>
+                <code>New Selected Time Range: $selection.earliest$ - $selection.latest$</code>
+                <br/>
+                <code>Count Value Range: $start.count$ - $end.count$</code>
+            </html>
+            <chart>
+                <search>
+                    <query>index=_internal | top sourcetype</query>
+                    <earliest>$selection.earliest$</earliest>
+                    <latest>$selection.latest$</latest>
+                </search>
+                <option name="charting.chart">bar</option>
+                <option name="charting.legend.placement">none</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="charting.seriesColors">[0xC9E1C1]</option>
+                <option name="height">300</option>
+            </chart>
+        </panel>
+    </row>
+</form>

@@ -1,0 +1,20 @@
+<dashboard isVisible="True">
+    <label>Dashboard Visibility</label>
+    <description>Dashboard that is visible in the dashboard listings page.</description>
+    <row>
+        <chart>
+            <title>Chart of events by sourcetype</title>
+            <search>
+                <query>index=_internal | head 1000 | chart count by sourcetype</query>
+            </search>
+            <option name="charting.chart">pie</option>
+        </chart>
+        <chart>
+            <title>Chart of events over time by sourcetype</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count by sourcetype</query>
+            </search>
+            <option name="charting.chart">area</option>
+        </chart>
+    </row>
+</dashboard>

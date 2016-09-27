@@ -1,0 +1,53 @@
+<form>
+    <label>Radio Form Input Element</label>
+    <description>Events Filtered by User and Sourcetype using Radio Form Inputs</description>
+    <fieldset autoRun="true" submitButton="false">
+        <input type="radio" token="username" searchWhenChanged="true">
+            <label>Select a User:</label>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <choice value="-">-</choice>
+            <choice value="admin">Admin</choice>
+            <choice value="nobody">Nobody</choice>
+            <choice value="splunk-system-user">Splunk System User</choice>
+        </input>
+        <input type="radio" token="source" searchWhenChanged="true">
+            <label>Select a Sourcetype:</label>
+            <prefix>sourcetype="</prefix>
+            <suffix>"</suffix>
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>sourcetype</fieldForLabel>
+            <fieldForValue>sourcetype</fieldForValue>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </input>
+    </fieldset>
+    <row>
+        <chart>
+            <title>Chart of Events for user="$username$" and $source$</title>
+            <search>
+                <query>index=_internal user=$username$ $source$ | timechart count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="charting.chart">column</option>
+        </chart>
+        <table>
+            <title>Chart of Events for user="$username$" and $source$</title>
+            <search>
+                <query>index=_internal user=$username$ $source$ | timechart count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="displayRowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">row</option>
+            <option name="count">5</option>
+        </table>
+    </row>
+</form>

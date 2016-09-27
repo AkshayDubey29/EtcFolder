@@ -1,0 +1,51 @@
+<dashboard>
+    <label>Drilldown Single</label>
+    <description>Single Panel with Drilldown</description>
+
+    <row>
+
+        <single>
+            <title>Single panel without drilldown</title>
+            <search>
+                <query>index=_internal sourcetype=splunkd | stats count</query>
+                <earliest>-1h</earliest>
+                <latest>now</latest>
+            </search>
+
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">splunkd events in the past hour</option>
+            <option name="field">count</option>
+            <option name="drilldown">none</option>
+        </single>
+
+        <single>
+            <title>Single panel with drilldown</title>
+            <search>
+                <query>index=_internal | stats count</query>
+                <earliest>-1h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">splunkd events in the past hour</option>
+            <option name="field">count</option>
+            <option name="drilldown">all</option>
+        </single>
+
+        <single>
+            <title>Single panel link to charting view with custom search</title>
+            <search>
+                <query>index=_internal earliest=-h | stats count</query>
+            </search>
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">splunkd events in the past hour</option>
+            <option name="field">count</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/charting?q=index=_internal earliest=-h | timechart count</link>
+            </drilldown>
+        </single>
+
+    </row>
+</dashboard>

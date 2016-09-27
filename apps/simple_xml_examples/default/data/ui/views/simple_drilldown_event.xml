@@ -1,0 +1,78 @@
+<dashboard>
+    <label>Drilldown Event</label>
+    <description>Event panels of types list, raw, and table, each with different types of drilldown</description>
+    <row>
+        <event>
+            <title>List event panel with drilldown outer</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">list</option>
+            <option name="count">3</option>
+            <option name="list.drilldown">outer</option>
+        </event>
+        <event>
+            <title>List event panel with drilldown inner</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">list</option>
+            <option name="count">3</option>
+            <option name="list.drilldown">inner</option>
+        </event>
+    </row>
+    <row>
+        <event>
+            <title>Raw event panel with drilldown full</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">raw</option>
+            <option name="count">3</option>
+            <option name="raw.drilldown">full</option>
+        </event>
+        <event>
+            <title>Raw event panel with drilldown none</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">raw</option>
+            <option name="count">3</option>
+            <option name="raw.drilldown">none</option>
+        </event>
+    </row>
+    <row>
+        <event>
+            <title>Table event panel with drilldown</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">table</option>
+            <option name="count">3</option>
+            <option name="table.drilldown">True</option>
+            <fields>["host","source","sourcetype"]</fields>
+        </event>
+        <event>
+            <title>Table event panel without drilldown</title>
+            <search>
+                <query>index=_internal | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="type">table</option>
+            <option name="count">3</option>
+            <option name="table.drilldown">False</option>
+            <fields>["host","source","sourcetype"]</fields>
+        </event>
+    </row>
+</dashboard>

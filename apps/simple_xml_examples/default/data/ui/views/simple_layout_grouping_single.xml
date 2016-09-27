@@ -1,0 +1,102 @@
+<dashboard>
+    <label>Simple Layout Grouping Single</label>
+    <description>Grouping multiple panels into one column. There can be one or more columns per dashboard row.</description>
+    <row>
+        <panel>
+            <!-- 2 elements are grouped into 1 column -->
+            <single>
+                <title>Single panel 1</title>
+                <search>
+                    <query>index=_internal earliest=-h | stats count</query>
+                </search>
+                <option name="unit">events</option>
+                <option name="unitPosition">after</option>
+                <option name="underLabel">events in the past hour</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+                </drilldown>
+            </single>
+            <single>
+                <title>Single panel 2</title>
+                <search>
+                    <query>index=_internal earliest=-24h | stats count</query>
+                </search>
+                <option name="unit">events</option>
+                <option name="unitPosition">after</option>
+                <option name="underLabel">events in the past day</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | timechart count</link>
+                </drilldown>
+            </single>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <!-- 3 elements are grouped into the left column -->
+            <single>
+                <title>Single panel 1</title>
+                <search>
+                    <query>index=_internal earliest=-h | stats count</query>
+                </search>
+                <option name="underLabel">events in the past hour</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+                </drilldown>
+            </single>
+            <single>
+                <title>Single panel 2</title>
+                <search>
+                    <query>index=_internal earliest=-12h | stats count</query>
+                </search>
+                <option name="underLabel">events in the past half day</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+                </drilldown>
+            </single>
+            <single>
+                <title>Single panel 3</title>
+                <search>
+                    <query>index=_internal earliest=-24h | stats count</query>
+                </search>
+                <option name="underLabel">events in the past day</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/charting?q=index=_internal earliest=-h | timechart count</link>
+                </drilldown>
+            </single>
+        </panel>
+        <panel>
+            <!-- , and 2 panels are grouped into the right column -->
+            <single>
+                <title>Single panel 4</title>
+                <search>
+                    <query>index=_internal earliest=-h | stats count</query>
+                </search>
+                <option name="unit">events</option>
+                <option name="unitPosition">after</option>
+                <option name="underLabel">events in the past hour</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | timechart count</link>
+                </drilldown>
+            </single>
+            <single>
+                <title>Single panel 5</title>
+                <search>
+                    <query>index=_internal earliest=-24h | stats count</query>
+                </search>
+                <option name="unit">events</option>
+                <option name="unitPosition">after</option>
+                <option name="underLabel">events in the past day</option>
+                <option name="field">count</option>
+                <drilldown>
+                    <link>/app/simple_xml_examples/charting?q=index=_internal earliest=-h | timechart count</link>
+                </drilldown>
+            </single>
+        </panel>
+    </row>
+</dashboard>

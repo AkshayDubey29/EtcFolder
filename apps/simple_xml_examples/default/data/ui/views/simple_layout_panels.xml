@@ -1,0 +1,72 @@
+<dashboard>
+    <label>Simple Layout Panels</label>
+    <description>Each row can have up to 3 panels.</description>
+    <row>
+        <single>
+            <title>Single panel 1</title>
+            <search>
+                <query>index=_internal earliest=-30m | stats count</query>
+            </search>
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">events in the past 30 minutes</option>
+            <option name="field">count</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+            </drilldown>
+        </single>
+        <single>
+            <title>Single panel 2</title>
+            <search>
+                <query>index=_internal earliest=-h | stats count</query>
+            </search>
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">events in the past hour</option>
+            <option name="field">count</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+            </drilldown>
+        </single>
+        <single>
+            <title>Single panel 3</title>
+            <search>
+                <query>index=_internal earliest=-24h | stats count</query>
+            </search>
+            <option name="unit">events</option>
+            <option name="unitPosition">after</option>
+            <option name="underLabel">events in the past day</option>
+            <option name="field">count</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/search?q=index=_internal earliest=-h | stats count</link>
+            </drilldown>
+        </single>
+    </row>
+    <row>
+        <chart>
+            <title>Chart 1</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count as events</query>
+            </search>
+
+            <option name="charting.chart">area</option>
+            <option name="charting.drilldown">all</option>
+        </chart>
+        <chart>
+            <title>Chart 2</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count as events</query>
+            </search>
+            <option name="charting.chart">column</option>
+        </chart>
+    </row>
+    <row>
+        <table>
+            <title>Table 1</title>
+            <search>
+                <query>index=_internal | head 1000 | top limit=100 sourcetype | eval percent = round(percent,2)</query>
+            </search>
+            <option name="count">5</option>
+        </table>
+    </row>
+</dashboard>

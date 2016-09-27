@@ -1,0 +1,18 @@
+<dashboard stylesheet="table_column_width.css">
+    <label>Table With Custom Column Width</label>
+    <description>Modify table width by custom stylesheet</description>
+    <row>
+        <table id="customWidth">
+            <title>Custom Column Width</title>
+            <search>
+                <query>index=_internal sourcetype=splunkd component=Metrics group=search_concurrency
+                    | eval user=coalesce(user, "system total")
+                    | bucket _time span=1h
+                    | stats avg(active_hist_searches) as active_hist_searches avg(active_realtime_searches) as active_realtime_searches by _time,user
+                </query>
+                <earliest>-24h</earliest>
+            </search>
+            <option name="drilldown">none</option>
+        </table>
+    </row>
+</dashboard>

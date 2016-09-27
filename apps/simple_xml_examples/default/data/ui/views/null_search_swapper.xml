@@ -1,0 +1,43 @@
+<dashboard>
+  <label>Null Search Swapper</label>
+  <row>
+    <panel>
+      <title>Search Logic Based on Result Count</title>
+
+      <input type="radio" token="index_switcher">
+         <label>Choose Index</label>
+         <choice value="index=_internal">index=_internal</choice>
+         <choice value="index=_null">index=_null</choice>
+         <initialValue>index=_null</initialValue>
+      </input>
+
+        <search id="search_logic">
+          <query>$index_switcher$ |  top sourcetype</query>
+          <earliest>-60m@m</earliest>
+          <latest>now</latest>
+          
+          <!-- Progress event has access to job properties only -->
+          <progress>
+            <condition match="$job.resultCount$ == 0">
+              <set token="show_html">foob</set>
+            </condition>
+            <condition>
+              <unset token="show_html"/>
+            </condition>
+          </progress>
+
+        </search>
+
+      <chart rejects="$show_html$">
+        <title>Top sourcetypes for index=_internal</title>
+        <search base="search_logic" />
+        <option name="charting.chart">bar</option>
+        <option name="charting.legend.placement">none</option>
+      </chart>
+
+      <html depends="$show_html$">
+         <p style="color:blue;margin-left:30px;font-size:14px">Search returned no results, so we've hidden the chart!</p>
+      </html>
+    </panel>
+  </row>
+</dashboard>

@@ -1,0 +1,122 @@
+<dashboard>
+    <label>Table Element with Sparklines</label>
+    <description/>
+    <row>
+
+        <table>
+            <title>Default Sparkline</title>
+            <search>
+                <query>index=_internal | chart count sparkline by sourcetype | sort -count</query>
+                <earliesr>-24h@h</earliesr>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">5</option>
+        </table>
+
+        <table>
+            <title>Basic Sparkline w/ line options</title>
+            <title>Default Sparkline</title>
+            <search>
+                <query>index=_internal | chart count sparkline by sourcetype | sort -count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">5</option>
+
+            <!-- Set sparkline options here; make sure that field matches field name of the search results -->
+            <format type="sparkline" field="sparkline">
+                <option name="lineColor">#5379af</option>
+                <option name="fillColor">#CCDDFF</option>
+                <option name="lineWidth">1</option>
+                <option name="height">25px</option>
+            </format>
+        </table>
+
+        <table>
+            <title>Basic Sparkline w/ Max Value Indicator</title>
+            <search>
+                <query>index=_internal | chart count sparkline by sourcetype | sort -count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">5</option>
+
+            <!-- Set sparkline options here; make sure that field matches field name of the search results -->
+            <format type="sparkline" field="sparkline">
+                <option name="lineColor">#5379af</option>
+                <option name="fillColor">#CCDDFF</option>
+                <option name="lineWidth">1</option>
+                <option name="maxSpotColor">#A2FFA2</option>
+                <option name="spotRadius">3</option>
+                <option name="height">25px</option>
+            </format>
+        </table>
+
+    </row>
+    <row>
+
+        <table>
+            <title>Basic Sparkline Bar w/ Style Options</title>
+            <!-- Set span for each sparkline datapoint to be 1 hour -->
+            <search>
+                <query>index=_internal | chart count sparkline(count, 1h) as trend by sourcetype | sort -count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">5</option>
+
+            <!-- Set sparkline options here; make sure that field matches field name of the search results -->
+            <format type="sparkline" field="trend">
+                <option name="type">bar</option>
+                <option name="height">40px</option>
+                <option name="barColor">#5379AF</option>
+                <option name="barWidth">5px</option>
+            </format>
+        </table>
+
+        <table>
+            <title>Basic Sparkline Bar w/ Color Map</title>
+            <!-- Set span for each sparkline datapoint to be 1 hour -->
+            <search>
+                <query>index=_internal | chart count sparkline(count, 1h) as trend by sourcetype | sort -count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">5</option>
+
+            <!-- Set sparkline options here; make sure that field matches field name of the search results -->
+            <format type="sparkline" field="trend">
+                <option name="type">bar</option>
+                <option name="height">40px</option>
+                <!-- Use colorMap to map specific values to selected colors -->
+                <option name="colorMap">
+                    <option name="2000:">#5379AF</option>
+                    <option name=":1999">#9ac23c</option>
+                </option>
+                <option name="barWidth">5px</option>
+            </format>
+        </table>
+
+    </row>
+
+</dashboard>

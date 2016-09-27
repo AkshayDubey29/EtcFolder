@@ -1,0 +1,131 @@
+<form>
+    <label>Recursive Search Post-process</label>
+    <description>Ability to chain multiple search post-process searches to optimize dashboard performance</description>
+    <!-- Global search to populate everything in the panel -->
+    <search id="baseSearch">
+        <query>index=_internal component=* | fields _time sourcetype component log_level</query>
+        <earliest>-1h@h</earliest>
+        <latest>@h</latest>
+    </search>
+    <row>
+        <panel>
+            <title>Example of Recursive Post Process Searching</title>
+            <input type="dropdown" token="sourcetypeSelection" searchWhenChanged="true">
+                <label>Sourcetype Selection:</label>
+                <!-- Post process search to build the list of available sourcetypes from the base set of results -->
+                <search base="baseSearch">
+                    <query>stats count by sourcetype | sort -count | eval label=sourcetype . " (" . count . ")"</query>
+                </search>
+                <fieldForLabel>label</fieldForLabel>
+                <fieldForValue>sourcetype</fieldForValue>
+                <selectFirstChoice>true</selectFirstChoice>
+                <choice value="*">All</choice>
+            </input>
+            <chart>
+                <title>Log Level Trend over Time</title>
+                <search id="firstPostProcess" base="baseSearch">
+                    <query>search sourcetype="$sourcetypeSelection$" | timechart count by log_level</query>
+                </search>
+                <!-- Post process search that includes a filter, and sets ID for additional post process -->
+                <option name="charting.chart">column</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.drilldown">none</option>
+                <option name="charting.legend.placement">right</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+                <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+                <option name="charting.axisTitleX.visibility">visible</option>
+                <option name="charting.axisTitleY.visibility">visible</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">0</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart.bubbleMaximumSize">50</option>
+                <option name="charting.chart.bubbleMinimumSize">10</option>
+                <option name="charting.chart.bubbleSizeBy">area</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.showDataLabels">none</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+            </chart>
+            <single>
+                <title>Error Count</title>
+                <search base="firstPostProcess">
+                    <query>fillnull value=0 ERROR | stats sum(ERROR) as errorCount</query>
+                </search>
+                <!-- Recursive Post Process to sum a specific series from the post process above -->
+                <option name="colorBy">value</option>
+                <option name="colorMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="numberPrecision">0</option>
+                <option name="showSparkline">1</option>
+                <option name="showTrendIndicator">1</option>
+                <option name="trendColorInterpretation">standard</option>
+                <option name="trendDisplayMode">absolute</option>
+                <option name="unitPosition">after</option>
+                <option name="useColors">0</option>
+                <option name="useThousandSeparators">1</option>
+            </single>
+            <single>
+                <title>WARN Count</title>
+                <search base="firstPostProcess">
+                    <query>fillnull value=0 WARN | stats sum(WARN) as warnCount</query>
+                </search>
+                <!-- Recursive Post Process to sum a specific series from the post process above -->
+                <option name="colorBy">value</option>
+                <option name="colorMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="numberPrecision">0</option>
+                <option name="showSparkline">1</option>
+                <option name="showTrendIndicator">1</option>
+                <option name="trendColorInterpretation">standard</option>
+                <option name="trendDisplayMode">absolute</option>
+                <option name="unitPosition">after</option>
+                <option name="useColors">0</option>
+                <option name="useThousandSeparators">1</option>
+            </single>
+            <single>
+                <title>Info Count</title>
+                <search base="firstPostProcess">
+                    <query>fillnull value=0 INFO | stats sum(INFO) as infoCount</query>
+                </search>
+                <!-- Recursive Post Process to sum a specific series from the post process above -->
+                <option name="colorBy">value</option>
+                <option name="colorMode">none</option>
+                <option name="drilldown">none</option>
+                <option name="numberPrecision">0</option>
+                <option name="showSparkline">1</option>
+                <option name="showTrendIndicator">1</option>
+                <option name="trendColorInterpretation">standard</option>
+                <option name="trendDisplayMode">absolute</option>
+                <option name="unitPosition">after</option>
+                <option name="useColors">0</option>
+                <option name="useThousandSeparators">1</option>
+            </single>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <title>Comparison Search (No Post Process Searching)</title>
+            <table>
+                <search>
+                    <query>
+                        index=_internal component=* sourcetype="$sourcetypeSelection$"
+                        | stats count(eval(log_level="ERROR")) AS ERROR, count(eval(log_level="WARN")) AS WARN, count(eval(log_level="INFO")) AS INFO by sourcetype
+                        | addcoltotals labelField=sourcetype label="TOTAL"
+                    </query>
+                    <earliest>-1h@h</earliest>
+                    <latest>@h</latest>
+                </search>
+                <option name="wrap">true</option>
+                <option name="rowNumbers">false</option>
+                <option name="dataOverlayMode">none</option>
+                <option name="drilldown">cell</option>
+                <option name="count">10</option>
+            </table>
+        </panel>
+    </row>
+</form>

@@ -1,0 +1,19 @@
+<dashboard>
+    <label>Table Element</label>
+    <description/>
+    <row>
+        <table>
+            <title>Top Sourcetypes (Last 24 hours)</title>
+            <search>
+                <query>index=_internal | top limit=100 sourcetype | eval percent = round(percent,2)</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="wrap">true</option>
+            <option name="rowNumbers">true</option>
+            <option name="dataOverlayMode">none</option>
+            <option name="drilldown">cell</option>
+            <option name="count">10</option>
+        </table>
+    </row>
+</dashboard>

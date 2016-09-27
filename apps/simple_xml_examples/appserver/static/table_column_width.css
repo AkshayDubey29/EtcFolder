@@ -1,0 +1,9 @@
+/* set column width base on column name */
+#customWidth th[data-sort-key=_time] {
+    width: 200px;
+}
+
+/* set column width base on index (start from 1) */
+#customWidth th:nth-child(2) {
+    width: 250px;
+}

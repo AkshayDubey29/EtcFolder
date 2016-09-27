@@ -1,0 +1,20 @@
+<dashboard refresh="10">
+    <label>Auto-Refresh Dashboard</label>
+    <description>Dashboard that reloads after a specified refresh interval (10 seconds).</description>
+    <row>
+        <chart>
+            <title>Chart of events by sourcetype</title>
+            <search>
+                <query>index=_internal | head 1000 | chart count by sourcetype</query>
+            </search>
+            <option name="charting.chart">pie</option>
+        </chart>
+        <chart>
+            <title>Chart of events over time by sourcetype</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count by sourcetype</query>
+            </search>
+            <option name="charting.chart">area</option>
+        </chart>
+    </row>
+</dashboard>

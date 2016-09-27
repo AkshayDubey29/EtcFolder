@@ -1,0 +1,22 @@
+<dashboard>
+    <label>Drilldown Chart</label>
+    <description>Chart panels with or without drilldown. Transforming commands are ignored in drilldown.</description>
+    <row>
+        <chart>
+            <title>Chart with drilldown</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count</query>
+            </search>
+            <option name="charting.chart">area</option>
+            <option name="charting.drilldown">all</option>
+        </chart>
+        <chart>
+            <title>Chart without drilldown</title>
+            <search>
+                <query>index=_internal | head 1000 | timechart count</query>
+            </search>
+            <option name="charting.chart">area</option>
+            <option name="charting.drilldown">none</option>
+        </chart>
+    </row>
+</dashboard>

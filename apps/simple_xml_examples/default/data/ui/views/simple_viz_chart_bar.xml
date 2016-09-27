@@ -1,0 +1,41 @@
+<form>
+    <label>Bar Chart</label>
+    <description>Example using a basic bar chart</description>
+
+    <fieldset submitButton="false">
+        <input type="time" token="time_token" searchWhenChanged="true">
+            <label></label>
+            <default>
+                <earliest>-7d@h</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+    </fieldset>
+
+    <row>
+        <panel>
+
+            <chart>
+                <search>
+                    <query>index=_internal | chart count over useragent by method</query>
+                    <earliest>$time_token.earliest$</earliest>
+                    <latest>$time_token.latest$</latest>
+                </search>
+                <option name="charting.chart">bar</option>
+                <option name="charting.axisY.scale">log</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+
+            <html>
+                <p>Chart Options:</p>
+                <code style="white-space: pre-wrap;"><![CDATA[<option name="charting.chart">bar</option>]]></code>
+                <br/>
+                <code style="white-space: pre-wrap;"><![CDATA[<option name="charting.axisY.scale">log</option>]]></code>
+            </html>
+
+        </panel>
+    </row>
+
+</form>

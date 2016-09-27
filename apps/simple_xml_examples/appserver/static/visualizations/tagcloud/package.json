@@ -1,0 +1,16 @@
+{
+  "name": "tagcloud",
+  "version": "1.0.0",
+  "description": "Tag Cloud",
+  "main": "visualization.js",
+  "scripts": {
+    "build": "PROD=1 $SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js",
+    "devbuild": "$SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js -d --progress",
+    "watch": "$SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js -d --watch --progress"
+  },
+  "author": "Splunk",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^1.12.14"
+  }
+}

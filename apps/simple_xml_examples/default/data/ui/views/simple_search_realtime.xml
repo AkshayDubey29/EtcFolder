@@ -1,0 +1,30 @@
+<dashboard>
+  <label>Realtime Search</label>
+  <description>Table, Chart and Event panels powered by inline and report realtime searches.</description>
+  <row>
+    <table>
+      <title>Inline Search Table</title>
+      <search>
+        <query>index=_internal | head 1000 | top limit=100 sourcetype | eval percent = round(percent,2)</query>
+        <earliest>rt-30s</earliest>
+        <latest>rt</latest>
+      </search>
+    </table>
+    <chart>
+      <title>Inline Search Chart</title>
+      <search>
+        <query>index=_internal | head 1000 | timechart count</query>
+        <earliest>rt-30s</earliest>
+        <latest>rt</latest>
+      </search>
+      <option name="charting.chart">area</option>
+    </chart>
+  </row>
+  <row>
+    <event>
+      <title>Report Event</title>
+      <search ref="realtime_search"/>
+      <option name="count">5</option>
+    </event>
+  </row>
+</dashboard>

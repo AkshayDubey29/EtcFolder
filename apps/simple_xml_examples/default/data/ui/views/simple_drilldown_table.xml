@@ -1,0 +1,38 @@
+<dashboard>
+    <label>Drilldown Table</label>
+    <description>Table panels with different types of drilldown - row, cell and none</description>
+    <row>
+        <table>
+            <title>Table with row drilldown</title>
+            <search>
+                <query>index=_internal | table sourcetype, source, host</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="drilldown">row</option>
+            <option name="count">3</option>
+        </table>
+        <table>
+            <title>Table with cell drilldown</title>
+            <search>
+                <query>index=_internal | table sourcetype, source, host</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="drilldown">cell</option>
+            <option name="count">3</option>
+        </table>
+    </row>
+    <row>
+        <table>
+            <title>Table without drilldown</title>
+            <search>
+                <query>index=_internal | table sourcetype, source, host</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="drilldown">none</option>
+            <option name="count">3</option>
+        </table>
+    </row>
+</dashboard>

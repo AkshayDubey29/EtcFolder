@@ -1,0 +1,36 @@
+<dashboard stylesheet="dark.css">
+    <label>Custom Layout Example: Dark</label>
+    <description>This example shows a custom stylesheet that is applied to this particular dashboard.</description>
+
+    <row>
+        <single>
+            <search>
+                <query>index=_internal | head 1 | table host</query>
+            </search>
+        </single>
+    </row>
+
+    <row>
+        <chart>
+            <title>Chart</title>
+            <search>
+                <query>index=_internal | timechart count</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+        </chart>
+    </row>
+
+    <row>
+        <table>
+            <title>Table</title>
+            <search>
+                <query>index=_internal sourcetype=splunkd_access | head 1000 | table _time method uri_path clientip
+                </query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+        </table>
+    </row>
+
+</dashboard>

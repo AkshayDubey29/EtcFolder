@@ -1,0 +1,1 @@
+Refresh panels automatically and let your users refresh individual panels.  Great to keep heads up displays always current.

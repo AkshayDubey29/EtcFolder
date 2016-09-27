@@ -1,0 +1,27 @@
+<dashboard isVisible="False" showsource="False">
+    <label>Drilldown Target View</label>
+
+    <row>
+        <html>
+            <h2>Received tokens:</h2>
+            <dl>
+                <dt>foo:</dt>
+                <dd>
+                    <code style="font-size: 24px; line-height: 36px;">
+                        $url:foo$
+                    </code>
+                </dd>
+            </dl>
+            <dl>
+                <dt>sourceView:</dt>
+                <dd>
+                    <code style="font-size: 24px; line-height: 36px;">
+                        $url:sourceView$
+                    </code>
+                </dd>
+            </dl>
+
+        </html>
+    </row>
+
+</dashboard>

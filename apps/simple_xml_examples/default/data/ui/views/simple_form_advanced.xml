@@ -1,0 +1,27 @@
+<form>
+    <label>Form Input - Advanced Controls</label>
+    <description>Examples of advanced controls that can be added to form inputs to customize form behavior.</description>
+    <fieldset autoRun="True" submitButton="False">
+        <input type="dropdown" token="username" searchWhenChanged="True">
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>user</fieldForLabel>
+            <fieldForValue>user</fieldForValue>
+            <search>
+                <query>index=_internal | stats count by user</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </input>
+    </fieldset>
+    <row>
+        <event>
+            <title>Events for user=$username$</title>
+            <search>
+                <query>index=_internal user=$username$ | head 1000</query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+        </event>
+    </row>
+</form>

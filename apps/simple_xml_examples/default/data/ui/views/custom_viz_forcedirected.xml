@@ -1,0 +1,32 @@
+<dashboard script="autodiscover.js">
+    <label>D3 Force-Directed Graph: Splunkweb view navigation</label>
+
+    <row>
+        <html>
+            <div id="custom"
+                 class="splunk-view"
+                 data-require="app/simple_xml_examples/components/forcedirected/forcedirected"
+                 data-options='{
+                        "managerid": "search1"
+                    }'
+                 style="height: 500px;">
+            </div>
+
+        </html>
+        <table id="table1">
+            <search>
+                <query>
+                    <![CDATA[
+                        index=_internal sourcetype=splunk_web_access uri_path=*/app/* NOT uri_path=*/static/*
+                        | rex field=referer "https?://[^/]+(?<source>/[^\?]*)"
+                        | eval category = case(status >= 500, "5xx", status >= 400, "4xx", status >= 300, "3xx", status >= 200, "2xx", 1==1, "NA")
+                        | rename uri_path as target
+                        | stats count by source target category
+                        | sort count
+                        ]]>
+                </query>
+                <earliest>-24h</earliest>
+            </search>
+        </table>
+    </row>
+</dashboard>

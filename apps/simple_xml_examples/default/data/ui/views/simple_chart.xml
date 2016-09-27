@@ -1,0 +1,20 @@
+<dashboard>
+    <label>Chart</label>
+    <row>
+        <chart>
+            <title>Internal sourcetypes over the last 24h</title>
+            <search>
+                <query>index=_internal | timechart count by sourcetype</query>
+                <earliest>-24h</earliest>
+            </search>
+            <option name="charting.chart.stackMode">stacked</option>
+        </chart>
+        <chart>
+            <title>Categorical chart</title>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-24h</earliest>
+            </search>
+        </chart>
+    </row>
+</dashboard>

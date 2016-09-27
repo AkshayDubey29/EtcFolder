@@ -1,0 +1,45 @@
+<h2>Implement the Examples</h2>
+
+<p>
+		You can easily incorporate the examples that use simple XML extensions into you own dashboards.
+		Copy the JavaScript and CSS source files from the examples to your app as described in the following procedure.
+</p>
+<p>
+		The procedure details the steps for the <a href="/app/simple_xml_examples/custom_table_cell_highlighting">Table Cell Highlighting</a> example.
+		The steps are the same for the other simple XML extensions examples.
+</p>
+
+<p style="padding-left: 24px;"><b>Note:</b> Perform the steps in the order listed in the procedure to avoid restarting Splunk Web to view the changes.</p>
+<ol>
+    <li>
+				<p>Copy the JavaScript and CSS source files to your app:</p>
+				<p>Source files:</p>
+				<pre>
+$SPLUNK_HOME/etc/apps/simple_xml_examples/appserver/static/table_cell_highlighting.js
+$SPLUNK_HOME/etc/apps/simple_xml_examples/appserver/static/table_cell_highlighting.css		
+				</pre>
+				<p>Target location:</p>
+				<pre>
+$SPLUNK_HOME/etc/apps/[YourApp]/appserver/static/table_cell_highlighting.js
+$SPLUNK_HOME/etc/apps/[YourApp]/appserver/static/table_cell_highlighting.css		
+				</pre>
+		</li>
+		<li>
+				<p>In your dashboard or form, from the top-level &lt;dashboard> or &lt;form> elements, use the script and stylesheet attributes
+				to access the JavaScript and CSS files.
+				</p>
+				<pre>
+&lt;dashboard script="table_cell_highlighting.js" stylesheet="table_cell_highlighting.css">
+				</pre>
+		</li>
+		<li>
+				<p>Refresh the dashboard.</p>
+		</li>
+		<li>
+				<p>(Optional) Restart Splunk Web.</p>
+				<p>This step is only necessary if you did steps 1 and 2 out of order. From the CLI, issue the following command:</p>
+				<pre>
+$SPLUNK_HOME/bin/splunk restart splunkweb
+				</pre>
+		</li>
+</ol>

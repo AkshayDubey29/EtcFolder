@@ -1,0 +1,63 @@
+<dashboard script="autodiscover.js">
+    <label>D3 Bubble Chart</label>
+
+    <row>
+        <html>
+            <h2>Bubble Chart Example</h2>
+
+            <div id="bubbleSearch"
+                 class="splunk-manager"
+                 data-require="splunkjs/mvc/searchmanager"
+                 data-options='{
+                    "search": "index=_internal | eval component=coalesce(group,component,status,sourcetype) | stats count by sourcetype,component",
+                    "earliest_time": "-7d",
+                    "status_buckets": 0,
+                    "cancelOnUnload": true,
+                    "auto_cancel": 90,
+                    "preview": true
+                 }'>
+            </div>
+
+            <div id="bubbleChart"
+                 class="splunk-view"
+                 data-require="app/simple_xml_examples/components/bubblechart/bubblechart"
+                 data-options='{
+                    "managerid": "bubbleSearch",
+                    "nameField": "component",
+                    "categoryField": "sourcetype",
+                    "valueField": "count",
+                    "height": 450
+                 }'>
+            </div>
+        </html>
+        <html>
+            <h2>Bubble Chart 2</h2>
+
+            <div id="bubbleSearch2"
+                 class="splunk-manager"
+                 data-require="splunkjs/mvc/searchmanager"
+                 data-options='{
+                    "search": "index=_internal sourcetype=\"splunkd\" component=Metrics group=pipeline | stats last(cumulative_hits) as hits by name,processor",
+                    "earliest_time": "-7d",
+                    "status_buckets": 0,
+                    "cancelOnUnload": true,
+                    "auto_cancel": 90,
+                    "preview": true
+                 }'>
+            </div>
+
+            <div id="bubbleChart2"
+                 class="splunk-view"
+                 data-require="app/simple_xml_examples/components/bubblechart/bubblechart"
+                 data-options='{
+                    "managerid": "bubbleSearch2",
+                    "nameField": "processor",
+                    "categoryField": "name",
+                    "valueField": "hits",
+                    "height": 450
+                 }'>
+            </div>
+        </html>
+    </row>
+
+</dashboard>

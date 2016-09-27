@@ -1,0 +1,110 @@
+<form>
+    <label>Dashboard Data Sampling</label>
+    <description>Determine the characteristics of a large data set without processing every event.</description>
+    <fieldset submitButton="false"></fieldset>
+    <row>
+        <panel>
+            <title>No Sample Ratio</title>
+            <chart>
+                <title>Trend Analysis for splunkd events (last 7 days)</title>
+                <search>
+                    <query>index=_internal sourcetype=splunkd | timechart count</query>
+                    <earliest>-7d@d</earliest>
+                    <latest>now</latest>
+                    <progress>
+                        <eval token="none.duration">tostring(tonumber($job.runDuration$),"duration")</eval>
+                        <eval token="none.eventCount">tostring($job.eventCount$,"commas")</eval>
+                    </progress>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+            <html>
+                <div style="text-align:center;">
+                    <p>Duration:</p>
+                    <h1>$none.duration$</h1>
+                    <p>Event Count:</p>
+                    <h1>$none.eventCount$</h1>
+                </div>
+            </html>
+        </panel>
+
+        <panel>
+            <title>1/10 Sample Ratio</title>
+            <chart>
+                <title>Trend Analysis for splunkd events (last 7 days)</title>
+                <search>
+                    <query>index=_internal sourcetype=splunkd | timechart count</query>
+                    <earliest>-7d@d</earliest>
+                    <latest>now</latest>
+                    <sampleRatio>10</sampleRatio>
+                    <progress>
+                        <eval token="10.duration">tostring(tonumber($job.runDuration$),"duration")</eval>
+                        <eval token="10.eventCount">tostring($job.eventCount$,"commas")</eval>
+                    </progress>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+            <html>
+                <div style="text-align:center;">
+                    <p>Duration:</p>
+                    <h1>$10.duration$</h1>
+                    <p>Event Count:</p>
+                    <h1>$10.eventCount$</h1>
+                </div>
+            </html>
+        </panel>
+
+        <panel>
+            <title>1/100 Sample Ratio</title>
+            <chart>
+                <title>Trend Analysis for splunkd events (last 7 days)</title>
+                <search>
+                    <query>index=_internal sourcetype=splunkd | timechart count</query>
+                    <earliest>-7d@d</earliest>
+                    <latest>now</latest>
+                    <sampleRatio>100</sampleRatio>
+                    <progress>
+                        <eval token="100.duration">tostring(tonumber($job.runDuration$),"duration")</eval>
+                        <eval token="100.eventCount">tostring($job.eventCount$,"commas")</eval>
+                    </progress>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+            <html>
+                <div style="text-align:center;">
+                    <p>Duration:</p>
+                    <h1>$100.duration$</h1>
+                    <p>Event Count:</p>
+                    <h1>$100.eventCount$</h1>
+                </div>
+            </html>
+        </panel>
+
+        <panel>
+            <title>1/1000 Sample Ratio</title>
+            <chart>
+                <title>Trend Analysis for splunkd events (last 7 days)</title>
+                <search>
+                    <query>index=_internal sourcetype=splunkd | timechart count</query>
+                    <earliest>-7d@d</earliest>
+                    <latest>now</latest>
+                    <sampleRatio>1000</sampleRatio>
+                    <progress>
+                        <eval token="1000.duration">tostring(tonumber($job.runDuration$),"duration")</eval>
+                        <eval token="1000.eventCount">tostring($job.eventCount$,"commas")</eval>
+                    </progress>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+            <html>
+                <div style="text-align:center;">
+                    <p>Duration:</p>
+                    <h1>$1000.duration$</h1>
+                    <p>Event Count:</p>
+                    <h1>$1000.eventCount$</h1>
+                </div>
+            </html>
+        </panel>
+
+    </row>
+</form>

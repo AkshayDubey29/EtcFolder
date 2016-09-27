@@ -1,0 +1,6 @@
+<dashboard showsource="false" script="prettify.js">
+  <label>Overview</label>
+  <row>
+    <html src="docs/overview.html" />
+  </row>
+</dashboard>

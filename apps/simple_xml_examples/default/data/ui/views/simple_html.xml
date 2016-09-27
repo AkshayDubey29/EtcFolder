@@ -1,0 +1,14 @@
+<dashboard>
+    <label>HTML</label>
+    <row>
+        <html>
+            <h1>
+                HTML Panels
+            </h1>
+            <p>Easily add content to clarify use of a dashboard.</p>
+
+        </html>
+        <html src="html/html_tags.html">
+        </html>
+    </row>
+</dashboard>

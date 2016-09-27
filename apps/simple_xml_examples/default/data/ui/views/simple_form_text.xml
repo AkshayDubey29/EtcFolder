@@ -1,0 +1,21 @@
+<form>
+    <label>Text Form Input Element</label>
+    <description>Top N Sourcetypes using Text Form Input</description>
+    <fieldset autoRun="true" submitButton="false">
+        <input type="text" token="limit" searchWhenChanged="true">
+            <label>Enter an integer N:</label>
+            <default>5</default>
+        </input>
+    </fieldset>
+    <row>
+        <table>
+            <title>Top $limit$ Sourcetypes based on N entered by user</title>
+            <search>
+                <query>index=_internal | top limit=$limit$ sourcetype | eval percent = round(percent,2)</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="rowNumbers">true</option>
+        </table>
+    </row>
+</form>

@@ -1,0 +1,56 @@
+<form>
+    <label>Scatter Chart</label>
+    <description>Scatter chart example</description>
+    <search id="base">
+        <query>index = _internal | stats count, mode(status) by method, status, date_hour</query>
+        <earliest>$time_token.earliest$</earliest>
+        <latest>$time_token.latest$</latest>
+    </search>
+    <fieldset submitButton="false">
+        <input type="time" token="time_token" searchWhenChanged="true">
+            <label></label>
+            <default>
+                <earliest>-7d@h</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <chart>
+                <title>HTTP 2xx Success Response</title>
+                <search base="base">
+                    <query>where (status) &gt;= 200 and (status) &lt; 300</query>
+                </search>
+                <option name="charting.chart">scatter</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>HTTP 3xx Redirection Response</title>
+                <search base="base">
+                    <query>where (status) &gt;= 300 and (status) &lt; 400</query>
+                </search>
+                <option name="charting.chart">scatter</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>HTTP 4xx Client Error Response</title>
+                <search base="base">
+                    <query>where (status) &gt;= 400 and (status) &lt; 500</query>
+                </search>
+                <option name="charting.chart">scatter</option>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>HTTP 5xx Server Error Response</title>
+                <search base="base">
+                    <query>where (status) &gt;= 500 and (status) &lt; 600</query>
+                </search>
+                <option name="charting.chart">scatter</option>
+            </chart>
+        </panel>
+    </row>
+</form>

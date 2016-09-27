@@ -1,0 +1,45 @@
+<form>
+    <label>In-Page Drilldown with Perma-linking</label>
+
+    <fieldset submitButton="false">
+        <!--
+            Create an input to store the drilldown value. It will be hidden using custom javascript when
+            the dashboard is loaded.
+         -->
+        <input type="text" token="sourcetype" searchWhenChanged="true"/>
+    </fieldset>
+
+    <row>
+        <table id="master">
+            <title>Master</title>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <!-- Set the type of of drilldown, since we will always consume the same field, use row-->
+            <option name="drilldown">row</option>
+            <drilldown>
+                <!-- Use set to specify the new token to be created.
+                     Use any token from the page or from the click event to produce the value needed. -->
+                <set token="sourcetype">$row.sourcetype$</set>
+                <!-- If we also set the form.sourcetype the input will get updated too -->
+                <set token="form.sourcetype">$row.sourcetype$</set>
+            </drilldown>
+        </table>
+    </row>
+
+    <row>
+        <!-- depends is the way we tell the content to only show when the token has a value.
+             Hint: use comma separated values if the element requires more than one token. -->
+        <chart id="detail" depends="$sourcetype$">
+            <title>Detail: $sourcetype$</title>
+            <search>
+                <query>index=_internal sourcetype=$sourcetype$ | timechart count</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+        </chart>
+    </row>
+
+</form>

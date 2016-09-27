@@ -1,0 +1,35 @@
+<form>
+    <label>Multi Select Input</label>
+    <description/>
+    <row>
+        <panel>
+            <!-- New in Splunk 6.1 use the multiselect input -->
+            <input type="multiselect" token="sourcetype_token" searchWhenChanged="true">
+                <default>splunkd, splunk_web_service, splunkd_access</default>
+                <!-- The final value will be surrounded by prefix and suffix -->
+                <prefix>(</prefix>
+                <suffix>)</suffix>
+                <!-- Each value will be surrounded by the valuePrefix and valueSuffix -->
+                <valuePrefix>sourcetype="</valuePrefix>
+                <valueSuffix>"</valueSuffix>
+                <!-- All the values and their valuePrefix and valueSuffix will be concatenated together with the delimiter between them -->
+                <delimiter> OR </delimiter>
+                <choice value="*">ALL</choice>
+                <fieldForLabel>sourcetype</fieldForLabel>
+                <fieldForValue>sourcetype</fieldForValue>
+                <search>
+                    <query>index=_internal | stats count by sourcetype</query>
+                    <earliest>0</earliest>
+                </search>
+            </input>
+            <chart>
+                <title>Multi Value Search</title>
+                <search>
+                    <query>index=_internal $sourcetype_token$ | stats count by sourcetype</query>
+                    <earliest>-24h@h</earliest>
+                    <latest>now</latest>
+                </search>
+            </chart>
+        </panel>
+    </row>
+</form>

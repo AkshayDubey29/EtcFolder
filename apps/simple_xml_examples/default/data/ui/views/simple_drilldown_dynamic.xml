@@ -1,0 +1,86 @@
+<dashboard>
+    <label>Dynamic Drilldown</label>
+    <description>Chart and Table panels with dynamic drilldown to custom destination links</description>
+    <row>
+        <chart>
+            <title>Chart panel with dynamic drilldown that passes the clicked Y-axis token to a form.</title>
+            <search>
+                <query>index=_internal | head 100 | chart count by sourcetype</query>
+            </search>
+            <option name="charting.chart">line</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/simple_form_text?form.limit=$click.value2$</link>
+            </drilldown>
+        </chart>
+        <chart>
+            <title>Chart panel with dynamic drilldown that passes the clicked X-axis token to a destination page.
+            </title>
+            <search>
+                <query>index=_internal | head 100 | chart count by sourcetype</query>
+            </search>
+
+            <option name="charting.chart">column</option>
+            <drilldown>
+                <link>http://answers.splunk.com/answers/?q=$click.value$</link>
+            </drilldown>
+        </chart>
+    </row>
+    <row>
+        <table>
+            <title>Table panel with dynamic drilldown that passes the clicked row's 'count' column value to populate a
+                form
+            </title>
+            <search>
+                <query>index=_internal | head 1000 | stats count by user</query>
+            </search>
+
+            <option name="count">10</option>
+            <drilldown>
+                <link>/app/simple_xml_examples/simple_form_text?form.limit=$row.count$</link>
+            </drilldown>
+        </table>
+        <table>
+            <title>Table panel with dynamic drilldown that passes the clicked row's 'count' column value, earliest time,
+                and latest time to populate a form
+            </title>
+            <search>
+                <query>index=_internal | head 1000 | stats count by user</query>
+            </search>
+
+            <option name="count">10</option>
+            <drilldown>
+                <link>
+                    <![CDATA[
+            /app/simple_xml_examples/simple_form_text?form.limit=$row.count$&earliest=$earliest$&latest=$latest$
+          ]]>
+                </link>
+            </drilldown>
+        </table>
+    </row>
+    <row>
+        <table>
+            <title>Table panel with dynamic drilldown that passes the clicked column's name to a destination page.
+            </title>
+            <search>
+                <query>index=_internal | head 1000 | table _time, user, sourcetype, source</query>
+            </search>
+
+            <option name="count">10</option>
+            <drilldown>
+                <link target="_blank">http://answers.splunk.com/search.html?q=$click.name2$</link>
+            </drilldown>
+        </table>
+        <table>
+            <title>Table panel with dynamic drilldown that passes the clicked cell's value to a destination page.
+            </title>
+            <search>
+                <query>index=_internal | head 1000 | table _time, user, sourcetype, source</query>
+            </search>
+
+            <option name="count">10</option>
+            <drilldown>
+                <link target="_blank">http://answers.splunk.com/search.html?q=$click.value2$</link>
+            </drilldown>
+        </table>
+    </row>
+</dashboard>

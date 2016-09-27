@@ -1,0 +1,54 @@
+<form>
+    <label>Time Range Picker Within Panels</label>
+    <description>Example of placing a time range picker within a panel.</description>
+    <row>
+        <panel>
+            <input type="time" token="time_range1">
+                <label>Time Range for Internal All</label>
+                <default>
+                    <earliest>-60m@m</earliest>
+                    <latest>now</latest>
+                </default>
+            </input>
+            <chart>
+                <title>_Internal All</title>
+                <search>
+                    <query>index=_internal | timechart count by sourcetype</query>
+                    <earliest>$time_range1.earliest$</earliest>
+                    <latest>$time_range1.latest$</latest>
+                </search>
+                <option name="charting.chart">line</option>
+                <option name="charting.chart.nullValueMode">gaps</option>
+                <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+                <option name="charting.chart.stackMode">default</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.drilldown">all</option>
+                <option name="charting.layout.splitSeries">0</option>
+                <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+                <option name="charting.legend.placement">right</option>
+            </chart>
+        </panel>
+        <panel>
+            <input type="time" token="time_range2" searchWhenChanged="true">
+                <label>Time Range for Internal Top 25</label>
+                <default>
+                    <earliest>@d</earliest>
+                    <latest>now</latest>
+                </default>
+            </input>
+            <event>
+                <title>_Internal Top 3</title>
+                <search>
+                    <query>index=_internal | head 3</query>
+                    <earliest>$time_range2.earliest$</earliest>
+                    <latest>$time_range2.latest$</latest>
+                </search>
+                <option name="maxLines">5</option>
+                <option name="raw.drilldown">full</option>
+                <option name="rowNumbers">0</option>
+                <option name="type">list</option>
+                <option name="count">5</option>
+            </event>
+        </panel>
+    </row>
+</form>

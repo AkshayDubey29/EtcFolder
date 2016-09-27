@@ -1,0 +1,27 @@
+<dashboard stylesheet="eval_tokens.css">
+  <label>Eval Tokens</label>
+  <row>
+    <panel>
+      <title></title>
+
+      <search id="search_logic">
+        <query>index=_internal |  top sourcetype</query>
+        <earliest>0</earliest>
+        <latest>now</latest>
+        <progress>
+          <eval token="duration">tostring(tonumber($job.runDuration$),"duration")</eval>
+        </progress>
+      </search>
+
+      <chart>
+        <title>Top sourcetypes for index=_internal</title>
+        <search base="search_logic" />
+        <option name="charting.chart">bar</option>
+      </chart>
+      <html>
+          <h3>Duration</h3>
+          <div class="custom-result-value">$duration$</div>
+      </html>
+    </panel>
+  </row>
+</dashboard>

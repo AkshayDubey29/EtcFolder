@@ -1,0 +1,36 @@
+<dashboard script="autodiscover.js">
+    <label>Punchcard</label>
+
+    <search id="punchcard_search">
+        <query>index=_internal | eval wday=strftime(_time, "%a") | stats count by wday,sourcetype</query>
+        <earliest>-7d</earliest>
+    </search>
+    
+    <row>
+        <panel>
+            <title>Sourcetypes</title>
+            <html>
+                <div id="punchcard"
+                     class="splunk-view"
+                     data-require="app/simple_xml_examples/components/punchcard/punchcard"
+                     data-options='{
+                        "managerid": "punchcard_search",
+                        "range_values": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                        "height": 450
+                    }'>
+                </div>
+            </html>
+        </panel>
+        <panel>
+            <title>Total</title>
+            <chart>
+                <search base="punchcard_search">
+                    <query>stats sum(count) as count by wday | sort -count</query>
+                </search>
+                <option name="charting.chart">bar</option>
+                <option name="height">450</option>
+            </chart>
+        </panel>
+    </row>
+
+</dashboard>

@@ -1,0 +1,39 @@
+<dashboard>
+    <label>Predictive Analytics in Charts</label>
+    <description/>
+    <row>
+        <chart>
+            <title>Line chart with event prediction</title>
+            <option name="charting.chart">line</option>
+            <search>
+                <query>index=_internal | head 10000 | timechart count as events| predict events</query>
+            </search>
+        </chart>
+        <chart>
+            <title>Column chart with event prediction using LLT (local level trend) algorithm</title>
+            <search>
+                <query>index=_internal | head 10000 | timechart count as events| predict events algorithm=LLP</query>
+            </search>
+            <option name="charting.chart">column</option>
+        </chart>
+    </row>
+    <row>
+        <chart>
+            <title>Area chart with event prediction and custom future timespan</title>
+            <option name="charting.chart">area</option>
+            <search>
+                <query>index=_internal | head 10000 | timechart count as events| predict events future_timespan=20
+                </query>
+            </search>
+        </chart>
+        <chart>
+            <title>Area chart with event prediction and custom upper(85%) and lower(99%) confidence intervals</title>
+            <option name="charting.chart">area</option>
+            <search>
+                <query>index=_internal | head 10000 | timechart count as events| predict events upper85=high
+                    lower99=low
+                </query>
+            </search>
+        </chart>
+    </row>
+</dashboard>

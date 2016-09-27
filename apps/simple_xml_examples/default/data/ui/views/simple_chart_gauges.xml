@@ -1,0 +1,35 @@
+<dashboard>
+    <label>Splunk Gauges</label>
+    <row>
+        <panel>
+            <chart>
+                <title>Filler Gauge</title>
+                <option name="charting.chart">fillerGauge</option>
+                <search>
+                    <query>index=_internal sourcetype=splunk_web_access | stats count</query>
+                </search>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>Radial Gauge</title>
+                <option name="charting.chart">radialGauge</option>
+                <search>
+                    <query>index=_internal sourcetype=splunk_web_access | stats count</query>
+                </search>
+            </chart>
+        </panel>
+        <panel>
+            <chart>
+                <title>Marker Gauge</title>
+                <search>
+                    <query>index=_internal sourcetype=splunk_web_access | stats count</query>
+                </search>
+                <option name="charting.chart">markerGauge</option>
+                <option name="charting.chart.rangeValues">[0,"333333","666666","1000000"]</option>
+                <option name="charting.chart.style">shiny</option>
+                <option name="charting.gaugeColors">[0x6cb8ca,0x956e96,0x324969]</option>
+            </chart>
+        </panel>
+    </row>
+</dashboard>

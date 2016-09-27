@@ -1,0 +1,31 @@
+<dashboard>
+    <label>Tag Cloud</label>
+
+    <row>
+        <table>
+            <title>Table</title>
+            <search>
+                <query>index=_internal source=*metrics.log group=pipeline | stats max(cpu_seconds) as cpu_seconds by
+                    processor | sort - cpu_seconds
+                </query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </table>
+        <viz type="simple_xml_examples.tagcloud">
+            <search>
+                <query>index=_internal source=*metrics.log group=pipeline | stats max(cpu_seconds) as cpu_seconds by processor</query>
+                <earliest>0</earliest>
+                <latest></latest>
+            </search>
+            <option name="wrap">undefined</option>
+            <option name="rowNumbers">undefined</option>
+            <option name="drilldown">row</option>
+            <option name="simple_xml_examples.tagcloud.maxFontSize">48</option>
+            <option name="simple_xml_examples.tagcloud.minFontSize">12</option>
+            <option name="simple_xml_examples.tagcloud.valueField">cpu_seconds</option>
+            <option name="simple_xml_examples.tagcloud.labelField">processor</option>
+        </viz>
+    </row>
+
+</dashboard>

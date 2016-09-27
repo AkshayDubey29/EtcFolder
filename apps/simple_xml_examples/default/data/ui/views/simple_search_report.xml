@@ -1,0 +1,23 @@
+<dashboard>
+  <label>Report</label>
+  <description>Table, Chart and Event panels powered by reports.</description>
+  <row>
+    <table>
+      <title>Report Table</title>
+      <search ref="reporting_search_table"/>
+      <option name="count">5</option>
+    </table>
+    <chart>
+      <title>Report Chart</title>
+      <search ref="reporting_search_timechart"/>
+      <option name="charting.chart">area</option>
+    </chart>
+  </row>
+  <row>
+    <event>
+      <title>Report Event</title>
+      <search ref="nonreporting_search"/>
+      <option name="count">5</option>
+    </event>
+  </row>
+</dashboard>

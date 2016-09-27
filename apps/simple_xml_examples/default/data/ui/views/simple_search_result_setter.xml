@@ -1,0 +1,34 @@
+<dashboard>
+  <label>Search Result Setter</label>
+  <description>Set tokens from the search manager to embed throughout the page.</description>
+
+  <row>
+    <panel>
+      <title>Adding Result Count to Viz Title</title>
+      <chart>
+        <title>Top sourcetypes ($sourcetype_count$ total sourcetypes)</title>
+
+        <search>
+          <query>index=_internal |  top sourcetype</query>
+          <earliest>-60m</earliest>
+          <latest>now</latest>
+
+          <!-- Use the following search events to access job properties, and set tokens that can be accessible throughout the page -->
+
+          <!-- Progress event has access to job properties only (not first result row) -->
+          <progress>
+            <set token="sourcetype_count">$job.resultCount$</set>
+          </progress>
+
+          <cancelled>
+            <unset token="sourcetype_count"></unset>
+          </cancelled>
+        </search>
+
+        <option name="charting.chart">bar</option>
+        <option name="charting.legend.placement">none</option>
+      </chart>
+    </panel>
+  </row>
+
+</dashboard>

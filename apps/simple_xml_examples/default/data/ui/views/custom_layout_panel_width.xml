@@ -1,0 +1,38 @@
+<dashboard script="custom_layout_width.js">
+    <label>Layout Customization: Panel Width</label>
+    <row>
+        <single>
+            <search>
+                <query>index=_internal sourcetype=splunkd | stats count</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="underLabel">splunkd events</option>
+            <option name="drilldown">none</option>
+        </single>
+        <single>
+            <search>
+                <query>index=_internal sourcetype=*access | stats count</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+            <option name="underLabel">access events</option>
+        </single>
+        <chart>
+            <search>
+                <query>index=_internal | timechart count</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+        </chart>
+    </row>
+    <row>
+        <table>
+            <search>
+                <query>index=_internal | stats count by sourcetype</query>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </search>
+        </table>
+    </row>
+</dashboard>

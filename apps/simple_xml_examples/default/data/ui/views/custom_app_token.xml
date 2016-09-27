@@ -1,0 +1,26 @@
+<dashboard script="set_app_token.js,set_user_token.js">
+
+    <label>Define custom tokens</label>
+
+    <row>
+        <panel>
+            <html>
+                <h1>Hello, $currentUser$!</h1>
+            </html>
+            <table>
+                <title>Drilldown from $view$ in $app$</title>
+                <search>
+                    <query>
+                        index=_internal | stats count by sourcetype
+                    </query>
+                    <earliest>-24h</earliest>
+                </search>
+                <drilldown>
+                    <link field="count">/app/$app$/otherview?foo=$row.count$&amp;sourceView=$view$</link>
+                    <link field="*">/app/$app$/otherview?foo=$row.sourcetype$&amp;sourceView=$view$</link>
+                </drilldown>
+            </table>
+        </panel>
+    </row>
+
+</dashboard>

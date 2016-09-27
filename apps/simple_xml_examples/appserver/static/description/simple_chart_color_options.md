@@ -1,0 +1,1 @@
+Use various chart color options to customize the dashboard look and feel without requiring any custom js/css.

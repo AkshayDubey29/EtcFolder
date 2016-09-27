@@ -1,0 +1,76 @@
+<form>
+    <label>Chart Overlay</label>
+    <description>Chart overlays help give your data context</description>
+    <fieldset autoRun="true" submitButton="false">
+        <input type="time" token="time" searchWhenChanged="true">
+            <label/>
+            <default>
+                <earliest>-60m@m</earliest>
+                <latest>now</latest>
+            </default>
+        </input>
+    </fieldset>
+    <row>
+        <panel>
+            <chart>
+                <title>Chart Overlay w/ Single Axis</title>
+                <search>
+                    <query>
+                        index=_internal
+                        | timechart count
+                        | eventstats avg(count) as average
+                        | eval average=round(average,0)
+                    </query>
+                    <earliest>$time.earliest$</earliest>
+                    <latest>$time.latest$</latest>
+                </search>
+                <option name="charting.chart">column</option>
+                <option name="charting.legend.placement">bottom</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="height">300</option>
+                <option name="charting.chart.overlayFields">average</option>
+                <option name="charting.fieldColors">{"count": 0x639BF1, "average":0xFF5A09}</option>
+            </chart>
+            <html>
+                <p>Chart Overlay Options:</p>
+                <code style="white-space: pre-wrap;">
+                    <![CDATA[<option name="charting.chart.overlayFields">average</option>]]></code>
+            </html>
+        </panel>
+        <panel>
+            <chart>
+                <title>Chart Overlay w/ Dual Axis</title>
+                <search>
+                    <query>index=_internal | timechart count as total count(eval(sourcetype="splunkd")) as "splunkd"
+                    </query>
+                    <earliest>$time.earliest$</earliest>
+                    <latest>$time.latest$</latest>
+                </search>
+                <option name="charting.axisTitleX.visibility">collapsed</option>
+                <option name="charting.axisTitleY.visibility">collapsed</option>
+                <option name="charting.axisTitleY2.visibility">visible</option>
+                <option name="charting.axisX.scale">linear</option>
+                <option name="charting.axisY.scale">linear</option>
+                <option name="charting.axisY2.enabled">false</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.chart">column</option>
+                <option name="charting.legend.placement">bottom</option>
+                <option name="charting.legend.masterLegend">null</option>
+                <option name="height">300</option>
+                <option name="charting.chart.overlayFields">splunkd</option>
+                <option name="charting.axisY2.enabled">true</option>
+                <option name="charting.axisY2.scale">inherit</option>
+                <option name="charting.axisY2.fields">splunkd</option>
+                <option name="charting.fieldColors">{"total": 0x639BF1, "splunkd":0xFF5A09}</option>
+
+            </chart>
+            <html>
+                <p>Chart Overlay Options:</p>
+                <code style="white-space: pre-wrap;"><![CDATA[<option name="charting.chart.overlayFields">splunkd</option>
+<option name="charting.axisY2.enabled">true</option>
+<option name="charting.axisY2.scale">inherit</option>
+<option name="charting.axisY2.fields">splunkd</option>]]></code>
+            </html>
+        </panel>
+    </row>
+</form>

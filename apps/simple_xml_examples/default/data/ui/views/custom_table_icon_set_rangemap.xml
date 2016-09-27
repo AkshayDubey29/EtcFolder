@@ -1,0 +1,20 @@
+<dashboard script="table_icons_rangemap.js" stylesheet="table_decorations.css">
+
+    <label>Table Icon Set (Rangemap)</label>
+
+    <row>
+        <table id="table1">
+            <title>Render Icons based on rangemap result</title>
+            <search>
+                <query>
+                    index=_internal
+                    | stats count by sourcetype,source,host
+                    | rangemap field=count low=0-100 elevated=101-1000 default=severe
+                </query>
+                <earliest>-1h</earliest>
+            </search>
+            <option name="drilldown">none</option>
+        </table>
+    </row>
+
+</dashboard>

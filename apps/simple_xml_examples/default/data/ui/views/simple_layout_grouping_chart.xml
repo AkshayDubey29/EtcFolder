@@ -1,0 +1,68 @@
+<dashboard>
+    <label>Simple Layout Grouping Chart</label>
+    <description>Grouping multiple panels into one column. There can be one or more columns per dashboard row.</description>
+    <row>
+        <panel>
+            <!-- 2 panels are grouped into 1 column -->
+            <chart>
+                <title>Chart panel 1</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events</query>
+                </search>
+                <option name="charting.chart">area</option>
+                <option name="charting.drilldown">all</option>
+            </chart>
+            <chart>
+                <title>Chart panel 2</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events</query>
+                </search>
+                <option name="charting.chart">column</option>
+            </chart>
+        </panel>
+    </row>
+    <row>
+        <panel>
+            <!-- 3 panels are grouped into the left column -->
+            <chart>
+                <title>Chart panel 1</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events by sourcetype</query>
+                </search>
+                <option name="charting.chart">area</option>
+                <option name="charting.drilldown">all</option>
+            </chart>
+            <chart>
+                <title>Chart panel 2</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events by sourcetype</query>
+                </search>
+                <option name="charting.chart">column</option>
+            </chart>
+            <chart>
+                <title>Chart panel 3</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events by sourcetype</query>
+                </search>
+                <option name="charting.chart">line</option>
+            </chart>
+        </panel>
+        <panel>
+            <!--, and 2 panels are grouped into the right column -->
+            <chart>
+                <title>Chart panel 4</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events by sourcetype</query>
+                </search>
+                <option name="charting.chart">pie</option>
+            </chart>
+            <chart>
+                <title>Chart panel 5</title>
+                <search>
+                    <query>index=_internal | head 1000 | timechart count as events by sourcetype</query>
+                </search>
+                <option name="charting.chart">bar</option>
+            </chart>
+        </panel>
+    </row>
+</dashboard>

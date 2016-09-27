@@ -1,0 +1,50 @@
+<dashboard script="autodiscover.js,custom_chart.js" stylesheet="custom_chart.css">
+    <label>Custom Chart Overlay</label>
+
+    <row>
+        <panel>
+            <html>
+                <h2>Line + Bar Chart</h2>
+                <div id="chart1"/>
+            </html>
+        </panel>
+        <panel>
+            <table id="table1">
+                <search>
+                    <query>
+                        index=_internal
+                        | timechart span=1h count as total
+                        | appendcols [ search index=_internal (sourcetype=splunk_web_access OR sourcetype=splunkd_access) | timechart span=1h count by sourcetype ]
+                        | table _time splunk_web_access splunkd_access total
+                    </query>
+                    <earliest>-1d@d</earliest>
+                    <latest>@d</latest>
+                </search>
+            </table>
+        </panel>
+    </row>
+
+    <row>
+        <html>
+            <h2>With Auto-Discovery</h2>
+            <div id="chart-search2"
+                 class="splunk-manager"
+                 data-require="splunkjs/mvc/searchmanager"
+                 data-options='{
+                    "earliest_time": "-1d@d",
+                    "latest_time": "@d",
+                    "search": "index=_internal | timechart span=1h count as total | appendcols [ search index=_internal NOT (sourcetype=splunk_web_access OR sourcetype=splunkd_access) | timechart span=1h count by sourcetype ] | eval time=strftime(_time, \"%H\") | table time * total"
+                 }'>
+            </div>
+            <div id="chart2"
+                 class="splunk-view"
+                 data-require="app/simple_xml_examples/components/d3chart/d3chartview"
+                 data-options='{
+                    "managerid": "chart-search2",
+                    "type": "linePlusBarChart"
+                 }'>
+            </div>
+        </html>
+    </row>
+
+</dashboard>

@@ -1,0 +1,25 @@
+<form>
+    <label>Time Picker Form Input Element</label>
+    <description>Top Sourcetypes by Time Period using Time Picker</description>
+    <fieldset autoRun="true" submitButton="false">
+        <input type="time" searchWhenChanged="true">
+            <label>Select a time:</label>
+            <default>Last 24 hours</default>
+        </input>
+    </fieldset>
+    <row>
+        <chart>
+            <title>Chart of Top Sourcetypes between $earliest$ and $latest$</title>
+            <search>
+                <query>index=_internal | top limit=100 sourcetype | eval percent = round(percent,2)</query>
+            </search>
+            <option name="charting.chart">pie</option>
+        </chart>
+        <table>
+            <title>Table of Top Sourcetypes between $earliest$ and $latest$</title>
+            <search>
+                <query>index=_internal | top limit=100 sourcetype | eval percent = round(percent,2)</query>
+            </search>
+        </table>
+    </row>
+</form>

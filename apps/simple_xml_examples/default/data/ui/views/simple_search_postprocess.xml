@@ -1,0 +1,31 @@
+<form>
+  <label>Post Process Search</label>
+  <description>Each panel post processes the base search through a separate search pipeline.</description>
+  <search id="internal_data">
+      <query>index=_internal | head 1000</query>
+  </search>
+  <fieldset autoRun="true" submitButton="false">
+    <input type="time" searchWhenChanged="true">
+      <default>
+        <earliest>-24h</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <chart>
+      <title>Events over Time</title>
+      <search base="internal_data">
+          <query>timechart count</query>
+      </search>
+      <option name="charting.chart">column</option>
+    </chart>
+    <table>
+      <title>Top Sourcetypes</title>
+      <search base="internal_data">
+          <query>top limit=100 sourcetype | eval percent = round(percent,2)</query>
+      </search>
+      <option name="displayRowNumbers">true</option>
+    </table>
+  </row>
+</form>

@@ -1,0 +1,2 @@
+Using a post-process search to visualize different HTTP response incidences based on count and hour of day of occurence.
+Responses are broken down by response type for better visualization, otherwise 200 would skew most of the chart if all were in the same visualization.

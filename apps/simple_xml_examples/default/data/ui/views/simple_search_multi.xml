@@ -1,0 +1,61 @@
+<dashboard>
+  <label>Multi-Search Management</label>
+  <description>Manage multiple background searches to drive various elements on the dashboard</description>
+  <search id="components_search">
+    <query>index=_internal sourcetype=splunkd component!="Metrics" | chart count over component by log_level | addtotals</query>
+    <earliest>-7d@h</earliest>
+    <latest>now</latest>
+  </search>
+  <row>
+    <panel>
+      <title>Splunkd Log Events</title>
+      <single>
+        <search base="components_search">
+          <query>stats sum(INFO)</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="link.visible">true</option>
+        <option name="unit">events</option>
+        <option name="unitPosition">after</option>
+        <option name="underLabel">INFO Level logs</option>
+        <option name="refresh.time.visible">false</option>
+      </single>
+      <single>
+        <search base="components_search">
+          <query>stats sum(WARN)</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="link.visible">true</option>
+        <option name="unit">events</option>
+        <option name="unitPosition">after</option>
+        <option name="underLabel">WARN Level logs</option>
+        <option name="refresh.time.visible">false</option>
+      </single>
+      <single>
+        <search base="components_search">
+          <query>stats sum(ERROR)</query>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="link.visible">true</option>
+        <option name="unit">events</option>
+        <option name="unitPosition">after</option>
+        <option name="underLabel">ERROR Level logs</option>
+        <option name="refresh.time.visible">false</option>
+      </single>
+      <chart>
+        <title>Top 10 Components</title>
+        <search base="components_search">
+          <query>| sort -Total limit=10 | fields - Total</query>
+        </search>
+        <option name="charting.chart">bar</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="charting.fieldColors">{"ERROR":0xD85E3D, "WARN":0xFAC61D, "INFO":0x6BB7C8}</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="height">300</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

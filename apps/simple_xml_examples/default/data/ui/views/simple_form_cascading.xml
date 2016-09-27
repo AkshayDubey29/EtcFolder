@@ -1,0 +1,42 @@
+<form>
+    <label>Cascading Form Input Element</label>
+    <description>A form input element's selected value is used to populate another form input element's options.</description>
+    <fieldset autoRun="true">
+        <input type="dropdown" token="username">
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>user</fieldForLabel>
+            <fieldForValue>user</fieldForValue>
+            <search>
+                <query>index=_internal | stats count by user</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </input>
+        <input type="radio" token="source">
+            <default>*</default>
+            <choice value="*">All</choice>
+            <fieldForLabel>sourcetype</fieldForLabel>
+            <fieldForValue>sourcetype</fieldForValue>
+            <search>
+                <query>index=_internal user=$username$| stats count by sourcetype</query>
+                <earliest>-24h</earliest>
+                <latest>now</latest>
+            </search>
+        </input>
+    </fieldset>
+    <row>
+        <table>
+            <title>Table of events</title>
+            <search>
+                <query>
+                    index=_internal user=$username$ sourcetype=$source$
+                    | head 1000
+                    | table _time, user, sourcetype, _raw
+                </query>
+                <earliest>-24h@h</earliest>
+                <latest>now</latest>
+            </search>
+        </table>
+    </row>
+</form>
