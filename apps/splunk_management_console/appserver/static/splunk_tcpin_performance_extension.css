@@ -1,0 +1,36 @@
+.kpi-list-view-title {
+	font-size: 16px;
+	font-weight: 500;
+	margin-bottom: 2px;
+}
+
+.dmc-kpi-item .alert {
+	margin-bottom: 0;
+}
+
+.dmc-kpi-item .alert-success .icon-alert {
+  color: #9ac23c;
+}
+.dmc-kpi-item .alert-success .icon-alert:before {
+  content: '\ECD3';
+}
+
+.dmc-kpi-item .alert-info .icon-alert {
+  color: #1e93c6;
+}
+
+.dmc-kpi-item h5 {
+	font-size: 12px;
+}
+
+.icon.icon-check {
+	color: #65a637;
+}
+
+.icon.icon-minus {
+	color: #f2b827;
+}
+
+.icon.icon-x {
+	color: #d6563c;
+}

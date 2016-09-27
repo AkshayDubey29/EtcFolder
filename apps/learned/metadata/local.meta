@@ -1,0 +1,24 @@
+[props/first_install-too_small]
+owner = nobody
+version = 6.4.3
+modtime = 1473383363.856961000
+
+[props/splunkd_stdout-too_small]
+owner = nobody
+version = 6.4.3
+modtime = 1473383363.896969000
+
+[props/export_metrics-too_small]
+owner = nobody
+version = 6.4.3
+modtime = 1473383373.840416000
+
+[props/splunkd_stdout-2]
+owner = nobody
+version = 6.4.3
+modtime = 1474624225.708890000
+
+[sourcetypes/%2Fopt%2Fsplunk%2Fvar%2Flog%2Fsplunk%2Fsplunkd_stdout.log_Fri_Sep_23_18%3A50%3A25_2016_276711728]
+owner = nobody
+version = 6.4.3
+modtime = 1474624225.801881000
