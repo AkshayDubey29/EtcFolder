@@ -1,0 +1,2 @@
+sid,search,"splunk_server","_time","is_realtime","__mv_sid","__mv_search","__mv_splunk_server","__mv__time","__mv_is_realtime"
+"rt_1475191787.3","| metadata type=sourcetypes | search totalCount > 0",testingserver,"1475191787.847655",1,,,,,
