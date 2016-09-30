@@ -1,0 +1,2 @@
+key,value,source,host
+site,"www.sampleapachesite.com","/opt/splunk/etc/apps/SplunkAppForWebAnalytics/sampledata/apache.log","*"

@@ -1,3 +1,19 @@
 [app/install/install_source_checksum]
 version = 6.4.3
 modtime = 1475191762.319842000
+
+[inputs/monitor%3A%2F%2F%24SPLUNK_HOME%2Fetc%2Fapps%2FSplunkAppForWebAnalytics%2Fsampledata%2Fapache.log]
+version = 6.4.3
+modtime = 1475219668.394563000
+
+[datamodels/Web]
+version = 6.4.3
+modtime = 1475219773.247597000
+
+[savedsearches/Generate%20user%20sessions]
+version = 6.4.3
+modtime = 1475200890.065319000
+
+[models/Web]
+version = 6.4.3
+modtime = 1475215999.620572000

@@ -1,3 +1,7 @@
 [history/.dummy_history]
 version = 6.4.3
 modtime = 1475191787.846909000
+
+[ui-prefs/search]
+version = 6.4.3
+modtime = 1475219872.079701000
