@@ -29,3 +29,7 @@ modtime = 1474586777.362609000
 [authorize/role_admin]
 version = 6.4.3
 modtime = 1475219498.729093000
+
+[inputs/monitor%3A%2F%2F%2Fhome%2Fvagrant%2Fsampledata%2FPassedKyoto2months.csv]
+version = 6.4.3
+modtime = 1475546242.639056000
